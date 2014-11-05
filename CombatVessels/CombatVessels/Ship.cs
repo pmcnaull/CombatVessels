@@ -9,8 +9,28 @@ namespace CombatVessels
     class Ship
     {
         int _length;
+
+        public int Length
+        {
+            get { return _length; }
+        }
+
         string _name;
         bool [] _segments;
+        Square _baseSquare;
+
+        public Square BaseSquare
+        {
+            get { return _baseSquare; }
+        }
+
+        ShipDirection _direction = ShipDirection.Unknown;
+
+        public ShipDirection Direction
+        {
+            get { return _direction; }
+        }
+            
 
         /// <summary>
         /// Constructs a new ship with a given length

@@ -8,8 +8,8 @@ namespace CombatVessels
 {
     class Board
     {
-        int _height;
-        int _width;
+        protected int _height;
+        protected int _width;
         ShotResult[,] _squares;
 
         /// <summary>
@@ -22,6 +22,19 @@ namespace CombatVessels
             _height = height;
             _width = width;
             _squares = new ShotResult[_height, _width];
+        }
+
+        /// <summary>
+        /// Returns true if the square is a valid selection within the board
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        protected bool SquareIsValid(Square square)
+        {
+            return square.Row < 0
+                || square.Column < 0
+                || square.Row > (_height - 1)
+                || square.Column > (_width - 1);
         }
     }
 }

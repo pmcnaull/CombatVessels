@@ -40,13 +40,11 @@ namespace CombatVessels
         /// <summary>
         /// Takes a shot and returns whether it was a hit or miss given the current board
         /// </summary>
-        /// <param name="shot"></param>
-        /// <returns></returns>
-        ShotResult Shoot(Shot shot)
+        /// <param name="shot">Shot object</param>
+        /// <returns>True if the square is occupied by a ship</returns>
+        ShotResult Shoot(Square shot)
         {
-
-
-            return ShotResult.None;
+            return _squareOccupiedStatus[shot.Row, shot.Column] ? ShotResult.Hit : ShotResult.Miss;            
         }
     }
 }

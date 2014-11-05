@@ -33,8 +33,36 @@ namespace CombatVessels
         /// <returns>True if the ship is placed successfully</returns>
         bool TryPlaceShip(Ship ship)
         {
+            //make sure the base square of the ship is within the limits of the board and that the direction has been specified
+            if (!SquareIsValid(ship.BaseSquare) || ship.Direction == ShipDirection.Unknown)
+            {
+                return false;
+            }
+            else
+            {
+                //check that all of the spaces needed by the ship are currently unoccupied
+                //if so, return true, otherwise false
+                Square currentSquare = ship.BaseSquare;
+                int lengthCheck = 0;
+                while (lengthCheck < ship.Length)
+                {
+
+                }
+
+            }
 
             return false;
+        }
+
+        
+        /// <summary>
+        /// Returns true if the given square is occupied by a ship
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        bool SquareIsOccupied(Square square)
+        {
+            return SquareIsValid(square) && _squareOccupiedStatus[square.Row, square.Column];
         }
 
         /// <summary>
@@ -44,7 +72,7 @@ namespace CombatVessels
         /// <returns>True if the square is occupied by a ship</returns>
         ShotResult Shoot(Square shot)
         {
-            return _squareOccupiedStatus[shot.Row, shot.Column] ? ShotResult.Hit : ShotResult.Miss;            
+            return SquareIsOccupied(shot) ? ShotResult.Hit : ShotResult.Miss;            
         }
     }
 }

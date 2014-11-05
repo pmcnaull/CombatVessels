@@ -8,20 +8,20 @@ namespace CombatVessels
 {
     class Board
     {
-        int _length;
+        int _height;
         int _width;
         ShotResult[,] _squares;
 
         /// <summary>
-        /// Initializes a new board of a given length and width
+        /// Initializes a new board of a given height and width
         /// </summary>
-        /// <param name="length"></param>
+        /// <param name="height"></param>
         /// <param name="width"></param>
-        public Board(int length, int width)
+        public Board(int height, int width)
         {
-            _length = length;
+            _height = height;
             _width = width;
-            _squares = new ShotResult[_length, _width];
+            _squares = new ShotResult[_height, _width];
         }
     }
 }

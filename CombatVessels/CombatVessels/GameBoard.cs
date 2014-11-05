@@ -8,11 +8,22 @@ namespace CombatVessels
 {
     class GameBoard: Board
     {
+        /// <summary>
+        /// List of all ships on the board
+        /// </summary>
+        List<Ship> _ships = new List<Ship>();
 
-        public GameBoard(int length, int width)
-            : base(length, width)
+        /// <summary>
+        /// Indicates the status of which spaces are occupied by a ship
+        /// </summary>
+        bool[,] _squareOccupiedStatus;
+
+
+        public GameBoard(int height, int width)
+            : base(height, width)
         {
 
+            _squareOccupiedStatus = new bool[height, width];
         }
 
         /// <summary>

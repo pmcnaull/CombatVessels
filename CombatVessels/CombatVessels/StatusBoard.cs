@@ -9,8 +9,8 @@ namespace CombatVessels
     class StatusBoard : Board
     {
 
-        public StatusBoard(int length, int width)
-            : base(length, width)
+        public StatusBoard(int height, int width)
+            : base(height, width)
         {
 
         }

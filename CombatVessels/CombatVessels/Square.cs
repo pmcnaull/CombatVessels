@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CombatVessels
 {
-    public struct Shot
+    public struct Square
     {
         int _row;
 
@@ -22,7 +22,7 @@ namespace CombatVessels
             get {return _column; }
         }
 
-        public Shot(int row, int column)
+        public Square(int row, int column)
         {
             _row = row;
             _column = column;

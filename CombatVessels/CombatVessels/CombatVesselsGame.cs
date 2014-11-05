@@ -47,5 +47,17 @@ namespace CombatVessels
         {
 
         }
+
+        List<Ship> InitShips()
+        {
+            List<Ship> ships = new List<Ship>();
+            ships.Add(new Ship(5, "Carrier"));
+            ships.Add(new Ship(4, "Battleship"));
+            ships.Add(new Ship(3, "Submarine"));
+            ships.Add(new Ship(3, "Cruiser"));
+            ships.Add(new Ship(2, "Destroyer"));
+            return ships;
+        }
+
     }
 }

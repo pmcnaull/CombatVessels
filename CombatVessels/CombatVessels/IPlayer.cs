@@ -8,7 +8,7 @@ namespace CombatVessels
 {
     public interface IPlayer
     {
-        Shot TakeTurn();
+        Square TakeTurn();
         void RecordShotResult(ShotResult result);
 
     }

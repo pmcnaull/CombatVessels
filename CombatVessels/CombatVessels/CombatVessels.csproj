@@ -44,14 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board.cs" />
+    <Compile Include="CombatVesselsGame.cs" />
     <Compile Include="CombatVesselsMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CombatVesselsMainForm.Designer.cs">
       <DependentUpon>CombatVesselsMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameBoard.cs" />
+    <Compile Include="IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ship.cs" />
+    <Compile Include="Shot.cs" />
+    <Compile Include="ShotResult.cs" />
+    <Compile Include="StatusBoard.cs" />
     <EmbeddedResource Include="CombatVesselsMainForm.resx">
       <DependentUpon>CombatVesselsMainForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -31,27 +31,58 @@ namespace CombatVessels
         /// </summary>
         /// <param name="ship">Ship to be placed</param>
         /// <returns>True if the ship is placed successfully</returns>
-        bool TryPlaceShip(Ship ship)
+        ShipPlacementResult TryPlaceShip(Ship ship)
         {
             //make sure the base square of the ship is within the limits of the board and that the direction has been specified
-            if (!SquareIsValid(ship.BaseSquare) || ship.Direction == ShipDirection.Unknown)
+            if (!SquareIsValid(ship.BaseSquare))
             {
-                return false;
+                return ShipPlacementResult.OffBoard;
+            }
+            else if (ship.Direction == ShipDirection.Unknown)
+            {
+                return ShipPlacementResult.DirectionUnknown;
             }
             else
             {
-                //check that all of the spaces needed by the ship are currently unoccupied
+                //check that all of the spaces needed by the ship are currently unoccupied and on the board
                 //if so, return true, otherwise false
                 Square currentSquare = ship.BaseSquare;
                 int lengthCheck = 0;
                 while (lengthCheck < ship.Length)
                 {
+                    if (!SquareIsValid(currentSquare))
+                    {
+                        return ShipPlacementResult.OffBoard;
+                    }
+                    else if (SquareIsOccupied(currentSquare))
+                    {
+                        return ShipPlacementResult.SquaresAlreadyOccupied;
+                    }
 
+                    //move to the next square to check
+                    if (ship.Direction == ShipDirection.Left)
+                    {
+                        currentSquare = new Square(currentSquare.Row, currentSquare.Column - 1);
+                    }
+                    else if (ship.Direction == ShipDirection.Right)
+                    {
+                        currentSquare = new Square(currentSquare.Row, currentSquare.Column + 1);
+                    }
+                    else if (ship.Direction == ShipDirection.Up)
+                    {
+                        currentSquare = new Square(currentSquare.Row - 1, currentSquare.Column);
+                    }
+                    else if (ship.Direction == ShipDirection.Down)
+                    {
+                        currentSquare = new Square(currentSquare.Row + 1, currentSquare.Column);
+                    }
+                    lengthCheck++;
                 }
 
+                //if the code makes it to here, all of the spaces requested by the ship are OK to use
+                //TODO: place ship on board
+                return ShipPlacementResult.OK;
             }
-
-            return false;
         }
 
         

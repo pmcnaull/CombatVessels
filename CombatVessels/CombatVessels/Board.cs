@@ -31,10 +31,10 @@ namespace CombatVessels
         /// <returns></returns>
         protected bool SquareIsValid(Square square)
         {
-            return square.Row < 0
-                || square.Column < 0
-                || square.Row > (_height - 1)
-                || square.Column > (_width - 1);
+            return square.Row >= 0
+                || square.Column >= 0
+                || square.Row < _height
+                || square.Column < _width;
         }
     }
 }

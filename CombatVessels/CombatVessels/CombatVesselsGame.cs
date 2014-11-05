@@ -11,8 +11,35 @@ namespace CombatVessels
         GameBoard _player1Board;
         GameBoard _player2Board;
 
-        public CombatVesselsGame()
+        IPlayer _player1;
+        IPlayer _player2;
+
+        public CombatVesselsGame(IPlayer player1, IPlayer player2)
         {
+            // Store references to each player
+            _player1 = player1;
+            _player2 = player2;
+        }
+
+        /// <summary>
+        /// Let each player take a turn.
+        /// If the first player wins on their turn, then the second player will not get to take their turn.
+        /// </summary>
+        public void TakeTurns()
+        {
+            // Variable to hold the next shot that will be taken
+            Shot nextShot;
+            // Get the next shot that the next player intends to make
+            nextShot = _player1.TakeTurn();
+            // Tell the board and the other player that the shot is being mad
+            
+            // Check to see if the player that just took their shot is the winner
+
+            // Let the second player play
+            nextShot = _player2.TakeTurn();
+            // Tell the board and the other player that the shot is being made
+
+            // Check to see if the player that just took their shot is the winner
 
         }
 

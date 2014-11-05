@@ -28,7 +28,7 @@ namespace CombatVessels
         public void TakeTurns()
         {
             // Variable to hold the next shot that will be taken
-            Shot nextShot;
+            Square nextShot;
             // Get the next shot that the next player intends to make
             nextShot = _player1.TakeTurn();
             // Tell the board and the other player that the shot is being mad

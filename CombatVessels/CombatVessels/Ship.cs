@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CombatVessels
 {
-    class Ship
+    public class Ship
     {
         int _length;
 
@@ -17,11 +17,16 @@ namespace CombatVessels
 
         string _name;
         bool [] _segments;
+        
         Square _baseSquare;
 
+        /// <summary>
+        /// The base square indicates the top left-most square of the ship
+        /// </summary>
         public Square BaseSquare
         {
             get { return _baseSquare; }
+            set { _baseSquare = value; }
         }
 
         ShipDirection _direction = ShipDirection.Unknown;
@@ -29,6 +34,7 @@ namespace CombatVessels
         public ShipDirection Direction
         {
             get { return _direction; }
+            set { _direction = value; }
         }
             
 

@@ -47,8 +47,8 @@ namespace CombatVessels
                 //check that all of the spaces needed by the ship are currently unoccupied and on the board
                 //if so, return true, otherwise false
                 Square currentSquare = ship.BaseSquare;
-                int lengthCheck = 0;
-                while (lengthCheck < ship.Length)
+                int lengthCounter = 0;
+                while (lengthCounter < ship.Length)
                 {
                     if (!SquareIsValid(currentSquare))
                     {
@@ -60,23 +60,15 @@ namespace CombatVessels
                     }
 
                     //move to the next square to check
-                    if (ship.Direction == ShipDirection.Left)
-                    {
-                        currentSquare = new Square(currentSquare.Row, currentSquare.Column - 1);
-                    }
-                    else if (ship.Direction == ShipDirection.Right)
+                    if (ship.Direction == ShipDirection.Horizontal)
                     {
                         currentSquare = new Square(currentSquare.Row, currentSquare.Column + 1);
                     }
-                    else if (ship.Direction == ShipDirection.Up)
-                    {
-                        currentSquare = new Square(currentSquare.Row - 1, currentSquare.Column);
-                    }
-                    else if (ship.Direction == ShipDirection.Down)
+                    else if (ship.Direction == ShipDirection.Vertical)
                     {
                         currentSquare = new Square(currentSquare.Row + 1, currentSquare.Column);
                     }
-                    lengthCheck++;
+                    lengthCounter++;
                 }
 
                 //if the code makes it to here, all of the spaces requested by the ship are OK to use

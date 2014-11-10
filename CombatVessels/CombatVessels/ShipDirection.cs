@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CombatVessels
 {
-    enum ShipDirection
+    public enum ShipDirection
     {
-        Unknown, Up, Down, Left, Right,
+        Unknown, Horizontal, Vertical
     }
 }

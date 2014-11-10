@@ -45,6 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
+    <Compile Include="BoardUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BoardUserControl.Designer.cs">
+      <DependentUpon>BoardUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CombatVesselsGame.cs" />
     <Compile Include="CombatVesselsMainForm.cs">
       <SubType>Form</SubType>
@@ -62,6 +68,9 @@
     <Compile Include="Square.cs" />
     <Compile Include="ShotResult.cs" />
     <Compile Include="StatusBoard.cs" />
+    <EmbeddedResource Include="BoardUserControl.resx">
+      <DependentUpon>BoardUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CombatVesselsMainForm.resx">
       <DependentUpon>CombatVesselsMainForm.cs</DependentUpon>
     </EmbeddedResource>

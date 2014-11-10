@@ -15,9 +15,19 @@ namespace CombatVessels
             get { return _length; }
         }
 
+        int _hitCounter;
+
+        /// <summary>
+        /// Returns true if the ship has been hit the number of its length
+        /// </summary>
+        internal bool IsSunk
+        {
+            get { return _hitCounter == _length; }
+        }
+            
+
         string _name;
-        bool [] _segments;
-        
+
         Square _baseSquare;
 
         /// <summary>
@@ -47,13 +57,16 @@ namespace CombatVessels
         {
             _length = length;
             _name = name;
-            _segments = new bool[_length];
         }
 
-        public void HitAtIndex(int index)
+        /// <summary>
+        /// Tells a ship that it has been hit
+        /// </summary>
+        internal void Hit()
         {
-
+            _hitCounter++;
         }
 
+        
     }
 }

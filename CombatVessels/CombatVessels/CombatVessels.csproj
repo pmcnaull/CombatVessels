@@ -58,6 +58,9 @@
     <Compile Include="CombatVesselsMainForm.Designer.cs">
       <DependentUpon>CombatVesselsMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\ShipHit.cs" />
+    <Compile Include="Events\ShipMiss.cs" />
+    <Compile Include="Events\ShipSunk.cs" />
     <Compile Include="GameBoard.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="Program.cs" />

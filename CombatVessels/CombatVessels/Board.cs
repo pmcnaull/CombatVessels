@@ -10,7 +10,6 @@ namespace CombatVessels
     {
         protected int _height;
         protected int _width;
-        ShotResult[,] _squares;
 
         /// <summary>
         /// Initializes a new board of a given height and width
@@ -21,7 +20,6 @@ namespace CombatVessels
         {
             _height = height;
             _width = width;
-            _squares = new ShotResult[_height, _width];
         }
 
         /// <summary>

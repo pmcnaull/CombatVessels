@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CombatVessels.Events;
 
 namespace CombatVessels
 {
@@ -14,16 +15,55 @@ namespace CombatVessels
         List<Ship> _ships = new List<Ship>();
 
         /// <summary>
-        /// Indicates the status of which spaces are occupied by a ship
+        /// Dictionary between a ship and the squares it occupies
         /// </summary>
-        bool[,] _squareOccupiedStatus;
+        Dictionary<Ship, List<Square>> _shipSquares = new Dictionary<Ship,List<Square>>();
+
+        /// <summary>
+        /// Event is raised when a ship is hit
+        /// </summary>
+        event ShipHitEventHandler ShipHit;
+
+        void OnShipHit(Ship ship, Square squareJustHit)
+        {
+            if (ShipHit != null)
+            {
+                ShipHit(this, new ShipHitEventArgs(ship, squareJustHit));
+            }
+        }
+
+        /// <summary>
+        /// Event is raised when a ship is missed
+        /// </summary>
+        event ShipMissEventHandler ShipMiss;
+
+        void OnShipMiss(Square squareJustMissed)
+        {
+            if (ShipMiss != null)
+            {
+                ShipMiss(this, new ShipMissEventArgs(squareJustMissed));
+            }
+        }
+
+        /// <summary>
+        /// Event is raised when a ship is sunk
+        /// </summary>
+        event ShipSunkEventHandler ShipSunk;
+
+        void OnShipSunk(Ship ship)
+        {
+            if (ShipSunk != null)
+            {
+                ShipSunk(this, new ShipSunkEventArgs(ship));
+            }
+        }
+
 
 
         public GameBoard(int height, int width)
             : base(height, width)
         {
 
-            _squareOccupiedStatus = new bool[height, width];
         }
 
         /// <summary>
@@ -85,7 +125,7 @@ namespace CombatVessels
         /// <returns></returns>
         bool SquareIsOccupied(Square square)
         {
-            return SquareIsValid(square) && _squareOccupiedStatus[square.Row, square.Column];
+            return SquareIsValid(square) && _shipSquares.Values.Any(s => s.Contains(square));
         }
 
         /// <summary>
@@ -95,7 +135,29 @@ namespace CombatVessels
         /// <returns>True if the square is occupied by a ship</returns>
         ShotResult Shoot(Square shot)
         {
-            return SquareIsOccupied(shot) ? ShotResult.Hit : ShotResult.Miss;            
+            bool isHit = SquareIsOccupied(shot);
+            if (isHit)
+            {
+                //figure out which ship was just hit
+                KeyValuePair<Ship, List<Square>> squaresForShip = _shipSquares.First(s => s.Value.Contains(shot));
+                Ship ship = squaresForShip.Key;
+
+                //tell anyone listening that the ship has been hit
+                OnShipHit(ship, shot);
+                
+                //check to see if the ship was sunk, and if so, tell anyone listening that the ship was sunk
+                if (ship.IsSunk)
+                {
+                    OnShipSunk(ship);
+                }
+            }
+            else
+            {
+                //tell the listeners that the shot was a miss
+                OnShipMiss(shot);
+            }
+
+            return isHit ? ShotResult.Hit : ShotResult.Miss;            
         }
     }
 }

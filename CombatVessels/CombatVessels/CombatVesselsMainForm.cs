@@ -25,6 +25,7 @@ namespace CombatVessels
 
             boardUserControl1.MarkHit(new Square(5, 5));
             boardUserControl1.MarkMiss(new Square(00, 0));
+
         }
     }
 }

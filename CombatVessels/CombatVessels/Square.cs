@@ -27,5 +27,28 @@ namespace CombatVessels
             _row = row;
             _column = column;
         }
+
+
+        #region Equality Testing
+        public override bool Equals(object obj)
+        {
+            return obj is Square && this == (Square)obj;
+        }
+
+        public override int GetHashCode()
+        {
+            return _row.GetHashCode() ^ _column.GetHashCode();
+        }
+
+        public static bool operator ==(Square x, Square y)
+        {
+            return x._row == y._row && x._column == y._column;
+        }
+
+        public static bool operator !=(Square x, Square y)
+        {
+            return !(x == y);
+        } 
+        #endregion
     }
 }
